@@ -25,7 +25,7 @@ import kotlin.properties.Delegates
 
 class DeviceActor(
     private val devicePoolId: DevicePoolId,
-    private val pool: SendChannel<DevicePoolMessage>,
+    private val pool: SendChannel<DevicePoolMessage.FromDevice>,
     private val configuration: Configuration,
     val device: Device,
     private val progressReporter: ProgressReporter,
