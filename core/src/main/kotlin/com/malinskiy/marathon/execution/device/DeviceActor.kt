@@ -10,6 +10,7 @@ import com.malinskiy.marathon.execution.Configuration
 import com.malinskiy.marathon.execution.DevicePoolMessage
 import com.malinskiy.marathon.execution.DevicePoolMessage.FromDevice.IsReady
 import com.malinskiy.marathon.execution.TestBatchResults
+import com.malinskiy.marathon.execution.TestResult
 import com.malinskiy.marathon.execution.progress.ProgressReporter
 import com.malinskiy.marathon.execution.withRetry
 import com.malinskiy.marathon.log.MarathonLogging
@@ -80,6 +81,9 @@ class DeviceActor(
             on<DeviceEvent.WakeUp> {
                 dontTransition()
             }
+            on<DeviceEvent.TestFinished> {
+                transitionTo(this, DeviceAction.ReportResult(it.testResult))
+            }
         }
         state<DeviceState.Terminated> {
             on<DeviceEvent.Complete> {
@@ -118,9 +122,19 @@ class DeviceActor(
                         }
                     }
                 }
+                is DeviceAction.ReportResult -> {
+                    sendResult(sideEffect.result)
+                }
             }
         }
     }
+
+    private fun sendResult(result: TestResult) {
+        launch {
+            pool.send(DevicePoolMessage.FromDevice.CompletedTest(device, result))
+        }
+    }
+
     private val logger = MarathonLogging.logger("DevicePool[${devicePoolId.name}]_DeviceActor[${device.serialNumber}]")
 
     val isAvailable: Boolean
