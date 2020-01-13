@@ -11,6 +11,7 @@ private val FORMATTER = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US).app
 
 internal class JunitReportGenerator(private val testEvents: List<TestEvent>) {
 
+    @Suppress("MagicNumber")
     private fun Long.toJUnitSeconds(): String = (this / 1000.0).toString()
 
     var junitReports = hashMapOf<DevicePool, JUnitReport>()
