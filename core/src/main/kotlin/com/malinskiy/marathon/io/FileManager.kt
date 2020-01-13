@@ -29,9 +29,9 @@ class FileManager(private val output: File) {
         return File(resultsFolder, filename)
     }
 
-    fun createFile(fileType: FileType, pool: DevicePoolId, device: DeviceInfo, junitReportName: String): File {
+    fun createFile(fileType: FileType, pool: DevicePoolId, device: DeviceInfo, fileName: String): File {
         val directory = createDirectory(fileType, pool, device)
-        val filename = createFilename(junitReportName, fileType)
+        val filename = createFilename(fileName, fileType)
         return createFile(directory, filename)
     }
 

@@ -46,20 +46,20 @@ class JUnitWriter(private val fileManager: FileManager) {
         }
     }
 
-    private fun generateXml(writer: XMLStreamWriter, JUnitReport: JUnitReport) {
+    private fun generateXml(writer: XMLStreamWriter, junitReport: JUnitReport) {
 
         writer.document {
             element("testsuite") {
-                attribute("name", JUnitReport.testSuiteData.name)
-                attribute("tests", JUnitReport.testSuiteData.tests.toString())
-                attribute("failures", JUnitReport.testSuiteData.failures.toString())
-                attribute("errors", JUnitReport.testSuiteData.errors.toString())
-                attribute("skipped", JUnitReport.testSuiteData.skipped.toString())
-                attribute("time", JUnitReport.testSuiteData.time)
-                attribute("timestamp", JUnitReport.testSuiteData.timeStamp)
+                attribute("name", junitReport.testSuiteData.name)
+                attribute("tests", junitReport.testSuiteData.tests.toString())
+                attribute("failures", junitReport.testSuiteData.failures.toString())
+                attribute("errors", junitReport.testSuiteData.errors.toString())
+                attribute("skipped", junitReport.testSuiteData.skipped.toString())
+                attribute("time", junitReport.testSuiteData.time)
+                attribute("timestamp", junitReport.testSuiteData.timeStamp)
                 element("properties") {}
 
-                JUnitReport.testCases.forEach {
+                junitReport.testCases.forEach {
                     element("testcase") {
                         attribute("classname", it.classname)
                         attribute("name", it.name)
