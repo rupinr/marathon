@@ -109,9 +109,7 @@ object TestLibraries {
     val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:${Versions.jupiterEngine}"
     val koin = "org.koin:koin-test:${Versions.koin}"
     val jsonAssert = "org.skyscreamer:jsonassert:${Versions.jsonAssert}"
-    val xmlunit = "org.xmlunit:xmlunit-assertj:2.6.3"
-    val assertj = "org.xmlunit:xmlunit-assertj:2.6.3"
-
+    val xmlUnit = "org.xmlunit:xmlunit-assertj:${Versions.xmlUnit}"
     val assertk = "com.willowtreeapps.assertk:assertk:${Versions.assertk}"
 
     val testContainers = "org.testcontainers:testcontainers:${Versions.testContainers}"
