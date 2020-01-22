@@ -12,6 +12,9 @@ dependencies {
     implementation(Libraries.kotlinLogging)
     implementation(Libraries.kotlinReflect)
     implementation(TestLibraries.jsonAssert)
+    implementation(TestLibraries.xmlunit)
+    implementation(TestLibraries.assertj)
+
     implementation(TestLibraries.spekAPI)
     implementation(TestLibraries.kluent)
     implementation(TestLibraries.mockitoKotlin)
